@@ -1,67 +1,505 @@
-:root {
-    --main-color: #00ff41; /* Hacker Yaşılı */
-    --bg-dark: #0a0a0a;
-    --card-bg: #151515;
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
 
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-dark);
+    padding: 0;
+    background-color: #050505;
+    font-family: 'Segoe UI', sans-serif;
     color: white;
+    overflow-x: hidden;
 }
 
-nav {
+/* --- İNTRO ANİMASİYASI ÜÇÜN QARA FON --- */
+.intro-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: #050505;
+    z-index: 1500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease-in-out;
+}
+
+body.intro-active .intro-bg {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* NAVBAR SİSTEMİ */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: rgba(10, 10, 10, 0.98);
+    border-bottom: 2px solid #111;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 20px 10%;
-    background: rgba(0, 0, 0, 0.8);
-    border-bottom: 1px solid var(--main-color);
+    padding: 0 50px;
+    z-index: 1000;
+    box-sizing: border-box;
 }
 
-.logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; }
-.logo span { color: var(--main-color); }
+/* LOQO VƏ ANİMASİYA (MÖHTƏŞƏM KEÇİD) */
+.logo-wrapper {
+    position: fixed; /* Navbardan sərbəst edirik ki, ortadan hərəkət edə bilsin */
+    top: 45px; /* Navbar hündürlüyünün yarısı */
+    left: 50px;
+    transform: translateY(-50%) scale(1);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* Sürüşmə effekti */
+    transition: top 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                left 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
 
-nav ul { display: flex; list-style: none; gap: 20px; }
-nav ul li a { color: white; text-decoration: none; transition: 0.3s; }
-nav ul li a:hover { color: var(--main-color); }
+/* İlkin girişdə mərkəzdə və yekə olur */
+body.intro-active .logo-wrapper {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2.2);
+}
 
-header {
-    height: 70vh;
+.daemon-icon { width: 45px; height: 45px; }
+.daemon-icon path { fill: #ffffff !important; }
+
+.daemon-eye-red {
+    fill: #ff0000;
+    filter: drop-shadow(0 0 5px #ff0000);
+    animation: eyeBlink 2s infinite;
+}
+
+@keyframes eyeBlink {
+    0%, 90%, 100% { opacity: 1; }
+    95% { opacity: 0; }
+}
+
+#daemonLogoText {
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#daemonLogoText:hover {
+    color: #ff0000;
+    text-shadow: 0 0 20px #ff0000;
+}
+
+/* BY BEXTIYAR - Animasiya zamanı gizlənir */
+.by {
+    color: #444;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 10px;
+    font-weight: bold;
+    animation: pulseBextiyar 3s infinite ease-in-out;
+    
+    /* Animasiya bitdikdən sonra peyda olur */
+    opacity: 1;
+    transition: font-size 0s 0.8s, opacity 0.5s ease 0.8s;
+}
+
+body.intro-active .by {
+    font-size: 0px; 
+    opacity: 0;
+    transition: none; 
+}
+
+@keyframes pulseBextiyar {
+    0%, 100% { color: #444; text-shadow: none; }
+    50% { color: #fff; text-shadow: 0 0 10px #fff; }
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-left: auto; /* Loqo fixed olduğu üçün linkləri sağa itələyir */
+}
+
+.nav-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.nav-links a:hover { color: white; }
+
+.discord-btn {
+    background: #5865F2;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white !important;
+}
+
+.discord-btn:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+}
+
+.content {
+    padding-top: 90px;
+}
+
+/* ƏSAS EKRAN (HERO) */
+.hero {
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
+    background: radial-gradient(circle at center, #150000 0%, #050505 70%);
+    border-bottom: 1px solid #1a1a1a;
 }
 
-.hero h1 span { color: var(--main-color); text-shadow: 0 0 10px var(--main-color); }
+.hero-content { max-width: 800px; padding: 20px; }
 
-.main-btn {
-    background: var(--main-color);
-    color: black;
-    padding: 12px 30px;
-    text-decoration: none;
+.hero-badge {
+    display: inline-block;
+    padding: 8px 15px;
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    border-radius: 20px;
+    font-size: 12px;
     font-weight: bold;
-    border-radius: 5px;
-    margin-right: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
-#stats {
+.hero h1 {
+    font-size: 56px;
+    margin: 0 0 20px;
+    line-height: 1.1;
+    color: #e0e0e0;
+}
+
+.highlight-red {
+    color: #ff0000;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 18px;
+    color: #888;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Mobil uyğunluq üçün əlavə etdim */
+}
+
+.btn-primary, .btn-secondary {
+    padding: 15px 35px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: #ff0000;
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.btn-primary:hover {
+    background: #cc0000;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid #333;
+}
+
+.btn-secondary:hover {
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+/* STATİSTİKALAR */
+.stats-section {
     display: flex;
     justify-content: center;
     gap: 40px;
-    padding: 50px 0;
+    padding: -50px 0 50px;
+    transform: translateY(-50%);
+    position: relative;
+    z-index: 10;
 }
 
-.stat-card {
-    background: var(--card-bg);
-    padding: 20px 40px;
+.stat-box {
+    background: #0f0f0f;
+    border: 1px solid #222;
+    padding: 30px;
     border-radius: 10px;
-    border: 1px solid #333;
+    width: 250px;
     text-align: center;
-    transition: 0.4s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: 0.3s;
 }
 
-.stat-card:hover { border-color: var(--main-color); transform: translateY(-10px); }
-.stat-card h3 { font-size: 32px; color: var(--main-color); margin-bottom: 5px; }
+.glow-box {
+    border-color: #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+}
+
+.stat-box:hover { transform: translateY(-10px); border-color: #ff0000; }
+
+.stat-icon { font-size: 30px; color: #ff0000; margin-bottom: 15px; }
+
+.stat-number { font-size: 36px; margin: 0; font-family: 'Orbitron', sans-serif; color: white; }
+
+.stat-box p { color: #777; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+
+/* XÜSUSİYYƏTLƏR */
+.features {
+    padding: 60px 10%;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 36px;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    padding: 40px 30px;
+    border-radius: 10px;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.feature-card:hover { border-color: #444; background: #111; }
+
+.feature-card i { font-size: 40px; color: #ff0000; margin-bottom: 20px; }
+
+.feature-card h4 { font-size: 22px; color: white; margin: 0 0 15px 0; }
+
+.feature-card p { color: #888; font-size: 15px; line-height: 1.6; margin: 0; }
+
+/* PREMIUM SƏHİFƏSİ */
+.premium-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #150000 0%, #050505 80%);
+}
+
+.premium-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.premium-header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.crypto-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.crypto-box {
+    background: #0a0a0a;
+    border: 1px solid #ff0000;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.15);
+}
+
+.crypto-icon {
+    font-size: 50px;
+    color: #f7931a; 
+    margin-bottom: 20px;
+}
+
+.crypto-box h3 {
+    font-size: 28px;
+    margin: 0 0 15px 0;
+    color: white;
+}
+
+.wallet-address {
+    background: #151515;
+    border: 1px solid #333;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 14px;
+    color: #aaa;
+    word-break: break-all;
+}
+
+.crypto-note {
+    font-size: 13px;
+    color: #777;
+    margin-top: 25px;
+}
+
+/* --- HOW TO INSTALL PAGE DİZAYNI --- */
+.tutorial-page {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #150000 0%, #050505 80%);
+}
+
+.tutorial-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+}
+
+.step-card {
+    background: #0a0a0a;
+    border: 1px solid #222;
+    border-left: 4px solid #ff0000;
+    padding: 30px;
+    border-radius: 8px;
+    display: flex;
+    gap: 25px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+.step-card:hover {
+    border-color: #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.15);
+}
+
+.step-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: #ff0000;
+    font-family: 'Orbitron', sans-serif;
+    min-width: 60px;
+    text-align: center;
+}
+
+.step-content {
+    flex-grow: 1;
+}
+
+.step-content h3 {
+    font-size: 26px;
+    color: white;
+    margin: 0 0 10px 0;
+}
+
+.step-content p {
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.step-image {
+    margin-top: 25px;
+    background: #0a0a0a;
+    border-radius: 8px;
+    border: 1px dashed #444;
+    text-align: center;
+    overflow: hidden;
+    transition: 0.3s;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+    max-height: 450px; 
+    object-fit: cover;
+}
+
+.step-card:hover .step-image {
+    border-color: #ff0000;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.1);
+}
+
+.step-btn {
+    display: inline-block;
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+/* 4. Addım (Tamamlama Kartı) */
+.final-step {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-left: 1px solid #222;
+    border-bottom: 4px solid #00ff41;
+}
+
+.final-step:hover {
+    border-color: #00ff41;
+    box-shadow: 0 0 25px rgba(0, 255, 65, 0.15);
+}
+
+.success-icon {
+    font-size: 70px;
+    color: #00ff41;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 10px rgba(0,255,65,0.4));
+}
+
+.final-btn {
+    background: #00ff41;
+    color: black;
+    margin-top: 20px;
+    box-shadow: 0 0 15px rgba(0,255,65,0.4);
+}
+
+.final-btn:hover {
+    background: #00cc33;
+    color: black;
+    box-shadow: 0 0 25px rgba(0,255,65,0.6);
+}
