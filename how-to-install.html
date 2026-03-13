@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Install | Daemon Client</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-wrapper">
+            <svg class="daemon-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#ffffff" d="M187.406 22.22l-41.562 41.843 62.875 29.843-8 16.875-68.845-32.655L59.97 150.53l33.31 96.97 56.876-7.156 10.53-42.47 18.126 4.47-45.843 185.25 55.31-49.656 10-9 4.94 12.5 14.81 37.53 31.25-41.624 8.126-10.844 7.25 11.47 30.406 48.217 22.657-46.75 5.092-10.5 9.125 7.25 62.532 49.782-62.814-182.22 17.656-6.094 12.782 37.063 60.562-.94 26.47-101.874-72.72-62.344-70.125 38.844-9.06-16.375 64.03-35.468-29.75-25.53-144.094-8.813z"/>
+                <circle class="daemon-eye-red" cx="300" cy="140" r="20" />
+                <circle class="daemon-eye-red" cx="180" cy="130" r="20" />
+            </svg>
+            <span id="daemonLogoText">DAEMON CLIENT</span>
+            <span class="by">by Bextiyar</span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="premium.html">Premium</a></li>
+            <li><a href="index.html">Main</a></li>
+            <li><a href="https://discord.com/invite/hRXJn97Keu" class="discord-btn" target="_blank" rel="noopener noreferrer">Discord Server</a></li>
+        </ul>
+    </nav>
+
+    <div class="content tutorial-page">
+        <div class="premium-header">
+            <h1 class="highlight-red">INSTALLATION GUIDE</h1>
+            <p>Follow these quick steps to set up Daemon Client correctly.</p>
+        </div>
+
+        <div class="tutorial-container">
+            
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Install Tampermonkey Extension</h3>
+                    <p>First, you must install the official Tampermonkey extension for your browser. This extension allows the client script to run.</p>
+                    <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener noreferrer" class="btn-primary step-btn"><i class="fa-brands fa-chrome"></i> Get Tampermonkey</a>
+                    <div class="step-image">
+                        <img src="https://i.imgur.com/iLXQPdx.png" alt="Tampermonkey Web Store">
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Enable Developer Mode</h3>
+                    <p>Go to your browser's extensions page (usually <code>chrome://extensions/</code>) and toggle "Developer mode" ON at the top right corner.</p>
+                    <div class="step-image">
+                        <img src="https://i.imgur.com/afRRjs6.png" alt="Developer Mode">
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Set Config Mode to Advanced</h3>
+                    <p>Open the Tampermonkey dashboard, click on the "Settings" tab. Look for the "Config mode" option and change it from "Novice" to "Advanced".</p>
+                    <div class="step-image">
+                        <img src="https://i.imgur.com/fr0OuZy.png" alt="Config Mode Advanced">
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Update Security Settings</h3>
+                    <p>Scroll down to the "Security" section. Find the "Content Script API" option and change it to <strong>UserScript</strong> to allow the mod to inject properly and save that.</p>
+                    <div class="step-image">
+                        <img src="https://i.imgur.com/HoBxRB3.png" alt="Content Script API">
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card final-step">
+                <i class="fa-solid fa-check-circle success-icon"></i>
+                <h3>You are all set!</h3>
+                <p>Your browser is now ready. You can safely install the Daemon Client mod.</p>
+                <a href="index.html" class="btn-primary final-btn"><i class="fa-solid fa-rocket"></i> Return to Main Page</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
